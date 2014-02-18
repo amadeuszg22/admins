@@ -27,6 +27,7 @@ git clone https://github.com/amadeuszg22/admins.git /sysrepo
 sudo cp -r /sysrepo/LB/config/* /etc/apache2/sites-enabled/
 sudo service apache2 restart
 echo "system install NFS"
+sudo mkdir /home/ftp/
 sudo apt-get install nfs-kernel-server nfs-common portmap
 sudo echo "/home/ftp/ (rw,sync,subtree_check)">> /etc/exports
 sudo rm /var/www/*
