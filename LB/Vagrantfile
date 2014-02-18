@@ -1,0 +1,16 @@
+Vagrant.configure("2") do |config|  
+  config.vm.box = "Test"
+  config.vm.box_url = "http://files.vagrantup.com/precise32.box"
+ 
+  config.vm.define :LB do |lb| 
+    lb.vm.hostname = "LB0"
+    lb.vm.network :forwarded_port, host:80, guest:80
+    lb.vm.network :forwarded_port, host:222, guest:22
+    lb.vm.network :forwarded_port, host:21, guest:21
+
+
+    lb.vm.provision :shell, :path => "bootstrapLB0.sh"
+       
+  end
+  
+end
