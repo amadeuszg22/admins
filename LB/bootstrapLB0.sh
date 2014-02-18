@@ -24,7 +24,7 @@ sudo rm /etc/apache2/sites-enabled/000-default
 sudo apt-get install git -y
 sudo mkdir /sysrepo
 git clone https://github.com/amadeuszg22/admins.git /sysrepo
-cp -r LB/config/* /etc/apache2/sites-enabled/
+sudo cp -r /sysrepo/LB/config/* /etc/apache2/sites-enabled/
 sudo service apache2 restart
 echo "system install NFS"
 sudo apt-get install nfs-kernel-server nfs-common portmap
