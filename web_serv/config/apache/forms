@@ -1,12 +1,12 @@
 <VirtualHost *:80>
 	ServerAdmin webmaster@localhost
 
-	DocumentRoot /webfiles/issue_master
+	DocumentRoot /webfiles/issue_master/
 	<Directory />
 		Options FollowSymLinks
 		AllowOverride All
 	</Directory>
-	<Directory /webfiles/issue_master >
+	<Directory /webfiles/issue_master/ >
 		Options Indexes FollowSymLinks MultiViews
 		AllowOverride All
 		Order allow,deny
