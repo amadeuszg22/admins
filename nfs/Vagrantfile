@@ -5,10 +5,21 @@ Vagrant.configure("2") do |config|
   config.vm.define :NFS do |nfs| 
     nfs.vm.hostname = "NFS"
     nfs.vm.network :private_network, ip: "192.168.10.2"
-    nfs.vm.network :forwarded_port, host:21, guest:21
+    nfs.vm.network :forwarded_port, host:224 , guest:22  
+    nfs.vm.network :forwarded_port, host:211, guest:21
+    nfs.vm.network :forwarded_port, host:20, guest:20 
     nfs.vm.network :forwarded_port, host:445 , guest:445
-    nfs.vm.provision :shell, :path => "bootstrapnfs"
-   
+    nfs.vm.network :forwarded_port, host:445 , guest:445 
+    nfs.vm.network :forwarded_port, host:49150 , guest:49150
+    nfs.vm.network :forwarded_port, host:49151 , guest:49151 
+    nfs.vm.network :forwarded_port, host:49152 , guest:49152
+    nfs.vm.network :forwarded_port, host:49153 , guest:49153
+    nfs.vm.network :forwarded_port, host:49154 , guest:49154 
+    nfs.vm.network :forwarded_port, host:49155 , guest:49155
+    nfs.vm.network :forwarded_port, host:49156 , guest:49157 
+    nfs.vm.network :forwarded_port, host:49158 , guest:49158
+    nfs.vm.network :forwarded_port, host:49160 , guest:49160 
+    nfs.vm.provision :shell, :path => "bootstrapnfs.sh"
   end
   
 end
