@@ -1,0 +1,13 @@
+<VirtualHost *:80>
+ServerName 37.59.50.116
+Alias /phpmyadmin  /usr/share/phpmyadmin
+#DocumentRoot /usr/share/phpmyadmin
+
+ <Location />
+          Options Indexes FollowSymLinks MultiViews
+          Order allow,deny
+          Allow from all
+          Satisfy Any
+        </Location>
+
+</VirtualHost>
