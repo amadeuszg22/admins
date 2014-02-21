@@ -4,7 +4,7 @@ echo "System Upgrades repositories"
 echo "system install NFS"
 sudo apt-get update
 sudo apt-get install nfs-kernel-server nfs-common portmap -y
-sudo echo "/ftp/ftp/ (rw,sync,subtree_check)">> /etc/exports
+sudo echo "/home/ftp/ (rw,sync,subtree_check)">> /etc/exports
 echo "Git installation"
 sudo apt-get install git -y
 sudo mkdir /sysrepo
