@@ -17,7 +17,7 @@ rm /etc/apache2/sites-enabled/000-default
 sudo service apache2 restart
 sudo apt-get install portmap nfs-common -y
 sudo mkdir /webfiles
-sudo echo "192.168.10.10:/home/ftp/ /webfiles nfs rsize=8192,wsize=8192,timeo=14,intr">>/etc/fstab
+sudo echo "192.168.10.2:/home/ftp/ /webfiles nfs rsize=8192,wsize=8192,timeo=14,intr">>/etc/fstab
 sudo apt-get install git -y
 sudo mkdir /sysrepo
 git clone https://github.com/amadeuszg22/admins.git /sysrepo
