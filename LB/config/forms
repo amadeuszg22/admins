@@ -1,22 +1,27 @@
-#form config
+# phpmyadmin
 <VirtualHost *:80>
-        ProxyRequests off
+Header add Set-Cookie "ROUTEID=.%{BALANCER_WORKER_ROUTE}e; path=/" env=BALANCER_ROUTE_CHANGED
+        ProxyRequests on
         
-        ServerName forms
+         ServerName viatoll3.pl
+         ServerAlias www.viatoll3.pl
+                
+</VirtualHost>	
 
         <Proxy balancer://forms>
                 # WebHead1
                 #BalancerMember http://37.59.50.116:80
-		BalancerMember http://192.168.10.11:80
-                # WebHead2
+		BalancerMember http://192.168.10.11/
+                #BalancerMember http://google.pl/
+		# WebHead2
                 #BalancerMember http://192.168.10.12:80
 
                 # Security 'technically we aren't blocking
                 # anyone but this the place to make those
                 # chages
-                Order Deny,Allow
-                Deny from none
-                Allow from all
+               Order Deny,Allow
+               Deny from none
+               Allow from all
 
                 # Load Balancer Settings
                 # We will be configuring a simple Round
@@ -24,7 +29,8 @@
                 # that all webheads take an equal share of
                 # of the load.
                 ProxySet lbmethod=byrequests
-
+		 ProxySet stickysession=ROUTEID
+	
         </Proxy>
 
         # balancer-manager
@@ -34,11 +40,11 @@
         # web interface.
         <Location /balancer-manager>
                 SetHandler balancer-manager
-
+	
                 # I recommend locking this one down to your
-                # your office
-                Order deny,allow
-                Allow from all
+        #       # your office
+              Order deny,allow
+               Allow from all
         </Location>
 
         # Point of Balance
@@ -47,7 +53,8 @@
         # balanced, in this example we will balance "/"
         # or everything in the site.
         ProxyPass /balancer-manager !
-        ProxyPass /forms balancer://forms/
+        ProxyPass /forms balancer://forms
+	ProxyPassReverse /forms/ balancer://forms
 
-</VirtualHost>
+
 

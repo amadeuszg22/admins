@@ -3,15 +3,15 @@
 Header add Set-Cookie "ROUTEID=.%{BALANCER_WORKER_ROUTE}e; path=/" env=BALANCER_ROUTE_CHANGED
         ProxyRequests on
         
-         ServerName mojadminphp
-      
+         ServerName viatoll3.pl
+      	 ServerAlias www.viatoll3.pl
                 
 </VirtualHost>	
 
-        <Proxy balancer://phpmyadmin>
+        <Proxy balancer://phpmyadmin/>
                 # WebHead1
                 #BalancerMember http://37.59.50.116:80
-		BalancerMember http://192.168.10.30/phpmyadmin
+		BalancerMember http://192.168.10.30/phpmyadmin/
                 #BalancerMember http://google.pl/
 		# WebHead2
                 #BalancerMember http://192.168.10.12:80
@@ -29,7 +29,7 @@ Header add Set-Cookie "ROUTEID=.%{BALANCER_WORKER_ROUTE}e; path=/" env=BALANCER_
                 # that all webheads take an equal share of
                 # of the load.
                 ProxySet lbmethod=byrequests
-		 ProxySet stickysession=ROUTEID
+		ProxySet stickysession=ROUTEID
 	
         </Proxy>
 
@@ -53,8 +53,8 @@ Header add Set-Cookie "ROUTEID=.%{BALANCER_WORKER_ROUTE}e; path=/" env=BALANCER_
         # balanced, in this example we will balance "/"
         # or everything in the site.
         ProxyPass /balancer-manager !
-        ProxyPass /phpmyadmin balancer://phpmyadmin
-	ProxyPassReverse /phpmyadmin balancer://phpmyadmin
+        ProxyPass /phpmyadmin/ balancer://phpmyadmin/
+	ProxyPassReverse /phpmyadmin/ balancer://phpmyadmin/
 
 
 
