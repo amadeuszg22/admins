@@ -23,6 +23,6 @@ sudo mkdir /sysrepo
 git clone https://github.com/amadeuszg22/admins.git /sysrepo
 sudo cp -r /sysrepo/web_serv/config/apache/* /etc/apache2/sites-enabled/
 sudo service apache2 restart
-sudo reboot
 sudo apt-get install libio-socket-ssl-perl libnet-ssleay-perl perl -y
 sudo apt-get install sendemail -y
+reboot

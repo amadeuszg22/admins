@@ -13,16 +13,16 @@ sudo apt-get install php5-memcache -y
 echo "system enables modules"
 sudo a2enmod mem_cache
 echo "system restart apache2 service"
-rm /etc/apache2/sites-enabled/000-default
 sudo service apache2 restart
 sudo apt-get install portmap nfs-common -y
-sudo mkdir /webfiles
-sudo echo "192.168.10.2:/home/ftp/ /webfiles nfs rsize=8192,wsize=8192,timeo=14,intr">>/etc/fstab
+echo "System install mysql-server"
+sudo debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password password dupa.123'
+sudo debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password_again password dupa.123'
+sudo apt-get install mysql-server -y
 sudo apt-get install git -y
-sudo mkdir /sysrepo
-git clone https://github.com/amadeuszg22/admins.git /sysrepo
-sudo cp -r /sysrepo/web_serv/config/apache/* /etc/apache2/sites-enabled/
+sudo mkdir /sysrepo                             
+sudo git clone https://github.com/amadeuszg22/admins.git /sysrepo 
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y phpmyadmin
+sudo ln -sv /etc/phpmyadmin/apache.conf /etc/apache2/conf.d/phpmyadmin.conf
 sudo service apache2 restart
 sudo reboot
-sudo apt-get install libio-socket-ssl-perl libnet-ssleay-perl perl -y
-sudo apt-get install sendemail -y
