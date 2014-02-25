@@ -25,7 +25,10 @@ sudo apt-get install git -y
 sudo mkdir /sysrepo
 git clone https://github.com/amadeuszg22/admins.git /sysrepo
 sudo cp -r /sysrepo/LB/config/* /etc/apache2/sites-enabled/
-sudo service apache2 restart
+sudo apt-get install openssl nginx -y 
+sudo rm /etc/nginx/sites-enabled/*
+sudo cp -r /sysrepo/LB/config/nginx/* /etc/nginx/sites-enabled/
+sudo service apache2 stop
 echo "system install NFS"
 sudo mkdir /home/ftp/
 sudo apt-get install nfs-kernel-server nfs-common portmap
