@@ -25,4 +25,6 @@ sudo cp -r /sysrepo/web_serv/config/apache/* /etc/apache2/sites-enabled/
 sudo service apache2 restart
 sudo apt-get install libio-socket-ssl-perl libnet-ssleay-perl perl -y
 sudo apt-get install sendemail -y
+sudo apt-get install ubuntu-desktop -y
+sudo apt-get install xrdp -y
 reboot
