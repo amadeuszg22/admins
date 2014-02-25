@@ -2,6 +2,7 @@
 echo "System will install server features"
 echo "System Upgrades repositories"
 sudo apt-get update
+sudo apt-get install htop -y
 echo "System install apache2"
 sudo apt-get install apache2 -y
 echo "System install PHP5"
