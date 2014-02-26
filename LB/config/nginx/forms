@@ -11,13 +11,13 @@ upstream lb-forms-phpmyadmin {
 server {
       listen 80;
  
-      server_name forms.viatoll3.pl www.forms.viatoll3.pl;
+      server_name forms.kapsch.net.pl www.forms.kapsch.net.pl;
  
       access_log  /var/log/nginx/nginx.access.subprint.log;
       error_log  /var/log/nginx/nginx_error.subprint.log debug;
  
       location / {
-        proxy_pass http://lb-forms; # Load balance the URL location "/" to the upstream lb-subprint
+        proxy_pass http://lb-forms/; # Load balance the URL location "/" to the upstream lb-subprint
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';

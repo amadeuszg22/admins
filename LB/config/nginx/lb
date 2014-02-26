@@ -11,8 +11,7 @@ upstream lb-otrs-phpmyadmin {
 server {
       listen 80;
  
-      server_name www.otrs.kapsch.net.pl otrs.kapsch.net.pl;
- 
+      server_name otrs.kapsch.net.pl www.otrs.kapsch.net.pl; 
       access_log  /var/log/nginx/nginx.access.subprint.log;
       error_log  /var/log/nginx/nginx_error.subprint.log debug;
  
