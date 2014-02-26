@@ -1,0 +1,80 @@
+<VirtualHost *:80>  
+  #ServerAdmin otrs@example.org
+  
+    ServerName otrs.kapsch.net.pl
+    ServerAlias www.otrs.kapsch.net.pl	
+
+  DocumentRoot /opt/otrs/  
+
+  <Directory />    
+    Options FollowSymLinks    
+    AllowOverride None  
+  </Directory>
+
+  # agent, admin and customer frontend  
+  ScriptAlias /otrs/ "/opt/otrs/bin/cgi-bin/"  
+  Alias /otrs-web/ "/opt/otrs/var/httpd/htdocs/"
+
+  # load perl modules  
+  <IfModule mod_perl.c>
+    Perlrequire /opt/otrs/scripts/apache2-perl-startup.pl
+    PerlModule Apache2::Reload    
+    PerlInitHandler Apache2::Reload    
+    PerlModule Apache2::RequestRec  
+  </IfModule>
+
+  # fallback to index.pl  
+  <Location />    
+    ErrorDocument 403 /otrs/index.pl    
+    DirectoryIndex index.pl  
+  </Location>
+
+  # activate CGI/mod_perl for perl files  
+  <LocationMatch /otrs/.*\.pl>    
+    Options +ExecCGI    
+    SetHandler cgi-script    
+    Order allow,deny    
+    Allow from all
+
+    <IfModule mod_perl.c>      
+      SetHandler perl-script      
+      PerlHandler ModPerl::Registry      
+      PerlOptions +ParseHeaders      
+      PerlOptions +SetupEnv    
+    </IfModule>
+
+  </LocationMatch>
+
+  # directory settings  
+  <Directory "/opt/otrs/bin/cgi-bin/">    
+    AllowOverride None    
+    Options +ExecCGI -Includes    
+    Order allow,deny    
+    Allow from all  
+  </Directory>
+
+  <Directory "/opt/otrs/var/httpd/htdocs/">    
+    AllowOverride None    
+    Order allow,deny    
+    Allow from all  
+  </Directory>
+
+  <IfModule mod_headers.c>    
+    <Directory "/opt/otrs/var/httpd/htdocs/skins/*/*/css-cache">      
+      <FilesMatch "\.(css|CSS)$">        
+        Header set Cache-Control "max-age=2592000 must-revalidate"      
+      </FilesMatch>    
+    </Directory>
+
+    <Directory "/opt/otrs/var/httpd/htdocs/js/js-cache">      
+      <FilesMatch "\.(js|JS)$">        
+        Header set Cache-Control "max-age=2592000 must-revalidate"      
+      </FilesMatch>    
+    </Directory>  
+  </IfModule>
+
+  #ErrorLog /var/log/apache2/otrs_error.log  LogLevel warn
+
+  #CustomLog /var/log/apache2/otrs_access.log combined
+
+</VirtualHost>
