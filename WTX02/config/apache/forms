@@ -1,5 +1,7 @@
 <VirtualHost *:80>
 	ServerAdmin webmaster@localhost
+        ServerName forms.kapsch.net.pl
+        ServerAlias www.forms.kapsch.net.pl
 
 	DocumentRoot /webfiles/issue_master/
 	<Directory />
