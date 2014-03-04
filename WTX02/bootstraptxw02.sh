@@ -2,6 +2,7 @@
 echo "System will install server features"
 echo "System Upgrades repositories"
 sudo apt-get update
+sudo apt-get install htop -y
 echo "System install apache2"
 sudo apt-get install apache2 -y
 echo "System install PHP5"
@@ -25,4 +26,6 @@ sudo cp -r /sysrepo/web_serv/config/apache/* /etc/apache2/sites-enabled/
 sudo service apache2 restart
 sudo apt-get install libio-socket-ssl-perl libnet-ssleay-perl perl -y
 sudo apt-get install sendemail -y
+sudo apt-get install ubuntu-desktop -y
+sudo apt-get install xrdp -y
 reboot
