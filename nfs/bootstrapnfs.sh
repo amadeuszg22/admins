@@ -3,6 +3,7 @@ echo "System will install server features"
 echo "System Upgrades repositories"
 echo "system install NFS"
 sudo apt-get update
+sudo apt-get install htop -y
 sudo apt-get install nfs-kernel-server nfs-common portmap -y
 sudo echo "/home/ftp/ (rw,sync,subtree_check)">> /etc/exports
 echo "Git installation"

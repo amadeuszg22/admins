@@ -5,6 +5,7 @@ echo "System will install server features"
 
 echo "System Upgrades repositories"
 sudo apt-get update
+sudo apt-get install htop -y
 echo "System install apache2"
 sudo apt-get install apache2 -y
 sudo echo "127.0.0.1 LB0"> /etc/hosts
@@ -25,7 +26,10 @@ sudo apt-get install git -y
 sudo mkdir /sysrepo
 git clone https://github.com/amadeuszg22/admins.git /sysrepo
 sudo cp -r /sysrepo/LB/config/* /etc/apache2/sites-enabled/
-sudo service apache2 restart
+sudo apt-get install openssl nginx -y 
+sudo rm /etc/nginx/sites-enabled/*
+sudo cp -r /sysrepo/LB/config/nginx/* /etc/nginx/sites-enabled/
+sudo service apache2 stop
 echo "system install NFS"
 sudo mkdir /home/ftp/
 sudo apt-get install nfs-kernel-server nfs-common portmap
